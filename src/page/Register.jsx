@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Register() {
@@ -12,6 +12,12 @@ function Register() {
   const [validation, setValidation] = useState([]);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      navigate('/home');
+    }
+  }, []);
 
   const registerHandler = async (e) => {
     e.preventDefault();
